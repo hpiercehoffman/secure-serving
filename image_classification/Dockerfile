@@ -22,4 +22,4 @@ RUN ["chmod", "+x", "./setup.sh"]
 RUN ["./setup.sh"]
 
 # Command to run the FastAPI application using Uvicorn
-CMD ["uvicorn", "resnet_server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "resnet_server:app", "--host", "0.0.0.0", "--port", "9000"]
