@@ -1,0 +1,9 @@
+version: v1
+name: "example"
+target: "resnet-enclave:latest"
+sources:
+  app: "resnet:latest"
+defaults:
+  memory_mb: 7000
+ingress:
+  - listen_port: 9000
