@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt
 # Build in a different stage to make final image smaller
 FROM python:3.9-slim AS build-image
 COPY --from=compile-image /opt/venv /opt/venv
-COPY main.py sentiment_analysis_model.h5 requirements.txt tokenizer.pickle setup.sh ./
+COPY sentiment_analysis.py sentiment_analysis_model.h5 requirements.txt tokenizer.pickle setup.sh ./
 
 ENV PATH="/opt/venv/bin:$PATH"
 
