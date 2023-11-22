@@ -15,7 +15,7 @@ COPY resnet_server.py requirements.txt setup.sh resnet18_pretrained.pth ./
 
 ENV PATH="/opt/venv/bin:$PATH"
 
-EXPOSE 8000
+EXPOSE 9000
 RUN ["chmod", "+x", "./setup.sh"]
 
 # Set up vsock connection to enclave
