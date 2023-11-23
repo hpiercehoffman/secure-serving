@@ -71,9 +71,9 @@ if __name__ == "__main__":
     url = "http://localhost:9000/predict/"
     sample_image = "sample_images/sample_cat.jpeg"
     batch_size = 2
-    thread_counts = [100, 150, 200, 250, 300] 
+    thread_counts = [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] 
     requests_per_thread = 2
 
-    enclave_result_df = test_vary_thread_count(url, sample_image, batch_size, thread_counts, requests_per_thread)
-    enclave_result_df.to_csv("load_testing_results/enclave_local_batch2_req2_100-300_threads.csv", index=False)
+    public_result_df = test_vary_thread_count(url, sample_image, batch_size, thread_counts, requests_per_thread)
+    public_result_df.to_csv("load_testing_results/public_local_batch2_req2_1-100_threads.csv", index=False)
     
