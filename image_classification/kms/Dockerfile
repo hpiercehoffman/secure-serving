@@ -8,12 +8,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY resnet_server.py requirements.txt resnet18_pretrained.pth setup.sh ./
-
-ENV PATH="/opt/venv/bin:$PATH"
+COPY resnet_server.py requirements.txt resnet18_pretrained.pth ./
 
 EXPOSE 8001
-#RUN ["chmod", "+x", "./setup.sh"]
-
-# Command to run the FastAPI application using Uvicorn
 CMD ["uvicorn", "resnet_server:app", "--host", "0.0.0.0", "--port", "8001"]
