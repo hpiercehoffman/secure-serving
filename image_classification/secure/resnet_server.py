@@ -4,11 +4,12 @@ import torch
 from torchvision import models, transforms
 from PIL import Image
 from io import BytesIO
+from typing import List
 import base64
 
 # Pydantic class for incoming images
 class ImageData(BaseModel):
-    image: str 
+    images: List[str]
 
 app = FastAPI()
 model_path = 'resnet18_pretrained.pth'  
@@ -27,14 +28,15 @@ transform = transforms.Compose([
 async def predict(data: ImageData):
     
     # Decode and transform the image
-    image_data = base64.b64decode(data.image)
-    image = Image.open(BytesIO(image_data)).convert('RGB')
-    image_tensor = transform(image).unsqueeze(0)
-    with torch.no_grad():
-        outputs = model(image_tensor)
+    decoded_images = [base64.b64decode(img) for img in data.images]
+    images = [Image.open(BytesIO(img_data)).convert('RGB') for img_data in decoded_images]
     
-    _, predicted = torch.max(outputs, 1)
-    return {"class_id": predicted.item()}
+    # Batch processing
+    batch = torch.stack([transform(image) for image in images])
+    with torch.no_grad():
+        outputs = model(batch)
+    _, predictions = torch.max(outputs, 1)
+    return {"class_ids": predictions.tolist()}
 
 # Run the server using Uvicorn
 if __name__ == "__main__":
