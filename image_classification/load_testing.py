@@ -2,8 +2,7 @@ import requests
 import time
 import concurrent.futures
 import base64
-
-import base64
+import pandas as pd
 
 def base64_encode(image_path):
     with open(image_path, "rb") as image_file:
@@ -76,4 +75,5 @@ if __name__ == "__main__":
     requests_per_thread = 2
 
     enclave_result_df = test_vary_thread_count(url, sample_image, batch_size, thread_counts, requests_per_thread)
-    enclave_result_df
+    enclave_result_df.to_csv("load_testing_results/enclave_local_batch5_req2_100-2000_threads.csv", index=False)
+    
