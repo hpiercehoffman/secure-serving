@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt
 # Build in a different stage to make final image smaller
 FROM python:3.9-slim AS build-image
 COPY --from=compile-image /opt/venv /opt/venv
-COPY resnet_server.py requirements.txt setup.sh resnet18_pretrained.pth ./
+COPY resnet_server.py requirements.txt resnet18_pretrained.pth ./
 
 ENV PATH="/opt/venv/bin:$PATH"
 
