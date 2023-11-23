@@ -5,10 +5,6 @@ RUN apt-get install -y --no-install-recommends build-essential gcc libtool lib32
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY resnet_server.py requirements.txt setup.sh resnet18_pretrained.pth ./
 COPY iperf-vsock/ /iperf-vsock/
 
 EXPOSE 9000
