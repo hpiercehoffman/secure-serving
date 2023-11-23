@@ -29,7 +29,7 @@ def threaded_batch_test(encoded_images, url, num_threads, requests_per_thread):
     results = [result for result in results if result is not None]
     return results
 
-def run_load_test_batch(url, sample_image, batch_size, num_threads, requests_per_thread):
+def run_threaded_batch_test(url, sample_image, batch_size, num_threads, requests_per_thread):
 
     encoded_image = base64_encode(sample_image)
     encoded_images = [encoded_image] * batch_size
@@ -44,10 +44,36 @@ def run_load_test_batch(url, sample_image, batch_size, num_threads, requests_per
     print(f"Min latency: {min(latencies):.4f} seconds")
     print(f"Max latency: {max(latencies):.4f} seconds")
     
+def test_vary_thread_count(url, sample_image, batch_size, thread_counts, requests_per_thread):
+    results = []
+
+    for num_threads in thread_counts:
+        
+        print(f"Running test with {num_threads} threads...")
+        encoded_image = base64_encode(sample_image)
+        encoded_images = [encoded_image] * batch_size
+
+        test_results = threaded_batch_test(encoded_images, url, num_threads, requests_per_thread)
+
+        latencies = [result[0] for result in test_results]
+        average_latency = sum(latencies) / len(latencies)
+        min_latency = min(latencies)
+        max_latency = max(latencies)
+
+        results.append({
+            "Threads": num_threads,
+            "Average Latency": average_latency,
+            "Min Latency": min_latency,
+            "Max Latency": max_latency
+        })
+    return pd.DataFrame(results)
+    
 if __name__ == "__main__":
-    url = "http://localhost:9000/predict/"  
+    url = "localhost:9000/predict/"
     sample_image = "sample_images/sample_cat.jpeg"
-    batch_size = 20
-    num_threads = 100
+    batch_size = 5
+    thread_counts = [100, 500, 1000, 5000]  
     requests_per_thread = 2
-    run_load_test_batch(url, sample_image, batch_size, num_threads, requests_per_thread)
+
+    enclave_result_df = test_vary_thread_count(url, sample_image, batch_size, thread_counts, requests_per_thread)
+    enclave_result_df
