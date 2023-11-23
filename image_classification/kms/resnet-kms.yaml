@@ -2,7 +2,7 @@ version: v1
 name: "resnet-kms"
 target: "resnet-kms:latest"
 sources:
-  app: "testbuild:latest"
+  app: "resnet-kms-image:latest"
 defaults:
   memory_mb: 7000
 kms_proxy:
