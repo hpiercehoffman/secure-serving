@@ -4,4 +4,6 @@ __pycache__
 slim.report.json
 
 *.eif
+image_classification/secure/iperf-vsock/
+image_classification/public/iperf-vsock/
 

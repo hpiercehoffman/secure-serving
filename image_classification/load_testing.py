@@ -16,7 +16,7 @@ def test_batch_request(encoded_images, url):
     if response.status_code == 200:
         return elapsed_time, response.json()
     else:
-        print(f"Request failed with status code: {response.status_code}")
+        print(f"Request failed with status code: {response.status_code}") 
         return None
 
 def threaded_batch_test(encoded_images, url, num_threads, requests_per_thread):
@@ -68,12 +68,12 @@ def test_vary_thread_count(url, sample_image, batch_size, thread_counts, request
     return pd.DataFrame(results)
     
 if __name__ == "__main__":
-    url = "localhost:9000/predict/"
+    url = "http://localhost:9000/predict/"
     sample_image = "sample_images/sample_cat.jpeg"
-    batch_size = 5
-    thread_counts = [100, 500, 1000, 5000]  
+    batch_size = 2
+    thread_counts = [100, 150, 200, 250, 300] 
     requests_per_thread = 2
 
     enclave_result_df = test_vary_thread_count(url, sample_image, batch_size, thread_counts, requests_per_thread)
-    enclave_result_df.to_csv("load_testing_results/enclave_local_batch5_req2_100-2000_threads.csv", index=False)
+    enclave_result_df.to_csv("load_testing_results/enclave_local_batch2_req2_100-300_threads.csv", index=False)
     

@@ -13,4 +13,4 @@ RUN ls iperf-vsock/build/src
 RUN cd iperf-vsock/build && ls ../ && ../configure && make
 
 RUN chmod +x iperf-vsock/build/src/iperf3
-CMD ["iperf-vsock/build/src/iperf3", "--vsock", "-s"]
+CMD ["iperf-vsock/build/src/iperf3", "-s"]

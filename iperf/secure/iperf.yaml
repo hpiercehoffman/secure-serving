@@ -1,0 +1,9 @@
+version: v1
+name: "example"
+target: "iperf-enclave:latest"
+sources:
+  app: "iperf-img:latest"
+defaults:
+  memory_mb: 7000
+ingress:
+  - listen_port: 9000
