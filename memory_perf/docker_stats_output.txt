@@ -1,0 +1,120 @@
+----- Timestamp: Tue Dec  5 19:56:56 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.26%     3.43MiB / 61.53GiB    0.01%     22.4MB / 85.7kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.13%     256.1MiB / 61.53GiB   0.41%     15.6MB / 58.8kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:56:59 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.266MiB / 61.53GiB   0.01%     24MB / 91.6kB     0B / 0B       30
+f3135fc48efb   lucid_poincare   42.70%    256.7MiB / 61.53GiB   0.41%     16.7MB / 62.6kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:03 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.15%     3.234MiB / 61.53GiB   0.01%     25.1MB / 95.4kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   86.52%    256.9MiB / 61.53GiB   0.41%     19.8MB / 74.3kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:06 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.31%     3.613MiB / 61.53GiB   0.01%     28.2MB / 107kB    0B / 0B       30
+f3135fc48efb   lucid_poincare   0.13%     256.1MiB / 61.53GiB   0.41%     20.3MB / 76.2kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:10 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.14%     3.238MiB / 61.53GiB   0.01%     29.2MB / 110kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   5.39%     256.5MiB / 61.53GiB   0.41%     22.4MB / 84kB    98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:13 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     30.8MB / 117kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   42.25%    256.4MiB / 61.53GiB   0.41%     25MB / 93.6kB    98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:17 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     32.9MB / 125kB    0B / 0B       30
+f3135fc48efb   lucid_poincare   43.80%    256.6MiB / 61.53GiB   0.41%     26.6MB / 99.4kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:20 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     33.9MB / 130kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   89.76%    256.8MiB / 61.53GiB   0.41%     30.3MB / 113kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:24 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.14%     3.234MiB / 61.53GiB   0.01%     35.5MB / 136kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   45.07%    256.7MiB / 61.53GiB   0.41%     32.3MB / 121kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:28 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.246MiB / 61.53GiB   0.01%     36.5MB / 140kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.12%     256.3MiB / 61.53GiB   0.41%     33.9MB / 126kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:31 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.13%     3.344MiB / 61.53GiB   0.01%     39.1MB / 151kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.15%     256.3MiB / 61.53GiB   0.41%     35.5MB / 132kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:35 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.22%     3.449MiB / 61.53GiB   0.01%     41.2MB / 158kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   45.18%    256.8MiB / 61.53GiB   0.41%     37.6MB / 140kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:38 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.25%     3.344MiB / 61.53GiB   0.01%     43.8MB / 169kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   100.09%   266.3MiB / 61.53GiB   0.42%     39.6MB / 147kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:42 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.12%     3.336MiB / 61.53GiB   0.01%     44.9MB / 173kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   87.48%    256.6MiB / 61.53GiB   0.41%     41.7MB / 155kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:45 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     45.4MB / 175kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   86.46%    256.8MiB / 61.53GiB   0.41%     44.9MB / 167kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:49 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.13%     3.25MiB / 61.53GiB    0.01%     47.5MB / 183kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   43.15%    256.7MiB / 61.53GiB   0.41%     47.5MB / 177kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:52 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.20%     3.344MiB / 61.53GiB   0.01%     50.1MB / 193kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.15%     256.1MiB / 61.53GiB   0.41%     49MB / 183kB     98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:56 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.29%     3.375MiB / 61.53GiB   0.01%     52.2MB / 201kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   46.05%    256.7MiB / 61.53GiB   0.41%     51.1MB / 191kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:57:59 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.23MiB / 61.53GiB    0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.12%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:02 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.13%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:05 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.12%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:09 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.12%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:12 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.11%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:16 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.12%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:19 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.14%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:22 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.12%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:26 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.12%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:29 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.11%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:33 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.13%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
+----- Timestamp: Tue Dec  5 19:58:36 UTC 2023 -----
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O     PIDS
+63fa0f3bc19f   boring_panini    0.00%     3.227MiB / 61.53GiB   0.01%     52.7MB / 203kB   0B / 0B       30
+f3135fc48efb   lucid_poincare   0.14%     256.1MiB / 61.53GiB   0.41%     51.6MB / 193kB   98.3kB / 0B   35
