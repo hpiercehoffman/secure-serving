@@ -1,5 +1,7 @@
 # Secure Model Serving with AWS Nitro Enclaves
 
+This is a course project for [Harvard CS 243](https://github.com/minlanyu/cs243-site). 
+
 ### Introduction ###
 
 What are our options for secure ML model serving in the cloud? Deploying any model to the cloud poses an inherent security risk, since it involves trusting code and data to a third party. As we run ML models on increasingly sensitive data, and as models themselves become more attractive targets for adversarial attacks, we need to be able to minimize our attack surface when deploying ML applications in the cloud.
