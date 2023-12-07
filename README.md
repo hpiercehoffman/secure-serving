@@ -100,6 +100,15 @@ What's the maximum amount of I/O bandwidth that a Nitro Enclave can handle? How 
 - The `iperf` client will send bytes to the standard server for 10 seconds, recording the maximum I/O throughput every second.
 - If running the enclave server, you need to determine the **channel ID** of the VSOCK. As far as I can tell, this is a random number and it's not visible anywhere. It seems to start at 4 and increments every time you run a new enclave. Luckily, you can get around this issue with a simple [script](https://github.com/hpiercehoffman/secure-serving/blob/main/perf_tests/iperf/secure/iperf-find-channel-id.sh) which iterates through every possible channel ID from 0-100, calling iperf each time. For me, the magic number was 37.
 
+### Run an enclave server with KMS cryptographic attestation enabled ###
 
+In addition to the performance benchmarks shown in my [report](https://github.com/hpiercehoffman/secure-serving/blob/main/report/Hannah_Pierce_Hoffman_CS243_FinalReport.pdf), I did some preliminary tests for how enclaves with [KMS cryptographic attestation](https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html) perform. I found that an enclave with KMS enabled behaves very similarly to an enclave without KMS enabled unless you start actively making KMS requests. Fully testing this line of inquiry was ultimately out of scope for my project. However, I will share some setup hints if you would like to get KMS attestation running for your enclave application. 
+- Set up allowed egresses for your enclave so it can contact the KMS server. An Enclaver config file with these egresses looks like [this](https://github.com/hpiercehoffman/secure-serving/blob/main/load_testing/kms/resnet-kms.yaml).
+- Change the allowed number of hops for outgoing PUT requests. This is necessary so your enclave can actually contact the KMS server from within a container. The command looks like this: `aws ec2 modify-instance-metadata-options --instance-id <Instance ID, starts with "i-"> --http-put-response-hop-limit 3 --http-endpoint enabled`
+- Before running this command on your local machine, you need to run `aws configure sso` and enter the sign-in information from an AWS IAM role. Make sure to enter `json` (all lowercase) when prompted for "output".
+- You might also need to [add an AWS role to your EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) so the instance can talk to the KMS server.
+- One other note is that the Dockerfile for any enclave that uses KMS **cannot** use multi stage builds. Use a template like [this](https://github.com/hpiercehoffman/secure-serving/blob/main/load_testing/kms/Dockerfile) to ensure that your enclave build is simple enough to work with KMS.
+- After this setup process, it should theoretically be possible to build and run an enclave which is able to connect to the KMS server: `sudo enclaver run --publish 9000:8001 resnet-kms:latest`
+- In the output of the run command, you should be able to see that the enclave makes contact with the KMS server.
 
 
