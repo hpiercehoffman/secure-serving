@@ -45,7 +45,7 @@ Now you should be ready to start creating enclaves. First, you need to download 
 
 **Note:** When your container runs as an enclave, it will not have any internet access to download Git repos, pretrained models, etc. Therefore, you must include *all* of the necessary files inside the container itself.
 
-Once the Docker image is ready, create an Enclaver YAML file to describe the configuration to be allocated to your enclave. See [this example](https://github.com/hpiercehoffman/secure-serving/blob/main/image_classification/secure/resnet.yaml) for file format. The memory allocated to your enclave in the YAML file must be less than or equal to the memory limit you set in `/etc/nitro_enclaves/allocator.yaml`. 
+Once the Docker image is ready, create an Enclaver YAML file to describe the configuration to be allocated to your enclave. See [this example](https://github.com/hpiercehoffman/secure-serving/blob/main/load_testing/secure/resnet.yaml) for file format. The memory allocated to your enclave in the YAML file must be less than or equal to the memory limit you set in `/etc/nitro_enclaves/allocator.yaml`. 
 
 Now build the enclave:    
 `sudo enclaver build --file resnet.yaml`     
@@ -62,13 +62,24 @@ This command connects port 80 of the enclave to port 8888 on your local machine.
 
 ### Running the enclave with Nginx ### 
 
-To handle HTTP traffic, you can use Nginx as a reverse proxy on your parent EC2 instance. Nginx listens on port 80 and forwards traffic to your enclave's exposed port. In this repo, I provide a [custom Nginx conf file](https://github.com/hpiercehoffman/secure-serving/blob/main/nginx/nginx-basic.conf) which sets up forwarding to a container (regular Docker or enclave) running on port 9000. Place this file in `/etc/nginx/nginx.conf` and run `sudo systemctl start nginx`. You should now be able to send HTTP requests to the extneral IP address of the parent EC2 instance, and Nginx will pass them along to the enclave.
+To handle HTTP traffic, you can use Nginx as a reverse proxy on your parent EC2 instance. Nginx listens on port 80 and forwards traffic to your enclave's exposed port. In this repo, I provide a [custom Nginx conf file](https://github.com/hpiercehoffman/secure-serving/blob/main/nginx/nginx-basic.conf) which sets up forwarding to a container (regular Docker or enclave) running on port 9000. The custom conf file also increases the maximum allowed size of requests, so we can serve requests up to 50MB in size. Place this file in `/etc/nginx/nginx.conf` and run `sudo systemctl start nginx`. You should now be able to send HTTP requests to the extneral IP address of the parent EC2 instance, and Nginx will pass them along to the enclave.
 
 This is the configuration I use for [internet load testing](https://github.com/hpiercehoffman/secure-serving/blob/main/load_testing/load_testing.ipynb). I run either an enclave server or a standard Docker server on port 9000 of the parent EC2 instance, then measure their ability to handle concurrent requests. For local load testing, I use the same setup, except I run a [script](https://github.com/hpiercehoffman/secure-serving/blob/main/load_testing/load_testing.py) directly on the parent instance, so it doesn't matter whether Nginx is running.
 
 ### Routing a mixed stream of requests to an enclave server and a standard server ###
 
+What if only some of your incoming traffic is subject to increased privacy restrictions? This *mixed-privacy* scenario could occur if some users have opted into additional privacy protections, or if users are located in different countries with different privacy laws. Or you might be A/B testing a new model which needs to remain secure until it's ready for launch. 
 
+If you want to run an enclave server and a standard server side-by-side to handle a stream of mixed requests, follow these steps:
+- Install Node.js following [these instructions](https://stackoverflow.com/questions/72544861/install-node-in-amazon-linux-2) for installing on Amazon Linux 2.
+- Create a Node server using [this code](https://github.com/hpiercehoffman/secure-serving/blob/main/routing-server/server.js).
+- The Node server runs on port 3000, so we need to update our [Nginx conf file](https://github.com/hpiercehoffman/secure-serving/blob/main/nginx/nginx-node.conf) to forward incoming requests to this port. 
+- Restart Nginx with the updated configuration: `sudo systemctl start nginx`
+- Start the Node server. You may need to be root to do this. Use command: `sudo "$(which node)" server.js`
+- Start the standard server to handle "less secure" requests. In this example, we run the standard server as a [Docker container](https://github.com/hpiercehoffman/secure-serving/blob/main/load_testing/public/Dockerfile) on port 9000. Run the docker: `docker run -p 9000:9000 resnet-public`
+- Start the enclave server on port 9001. `sudo enclaver run --publish 9001:9000 resnet-enclave:latest`
+
+At this point, the Node server should be running on port 3000, with Nginx forwarding incoming requests to Node. The Node server will look at the API prefix of each request. Requests made to `/predict-secure/` will be forwarded to the secure server on port 9001, while requests made to `/predict-public/` will be forwarded to the standard server running on port 9000. It's not necessary to change the name of the prediction endpoint in the servers themselves: for both servers, we are forwarding requests to the `/predict/` endpoint that would be used when running each server individually. All you need to do is ensure that your *client* differentiates between secure and standard requests, and prefixes them with the appropriate API name.
 
 
 
