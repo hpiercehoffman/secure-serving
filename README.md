@@ -50,6 +50,28 @@ Once the Docker image is ready, create an Enclaver YAML file to describe the con
 Now build the enclave:    
 `sudo enclaver build --file resnet.yaml`     
 
-### Running the enclave ###
+### Running the enclave without Nginx ###
+
+If you are running an ML server in an enclave and you would like to test **without** nginx, you can directly forward incoming traffic from port 80 on the parent VM to the enclave's ingress port. Use the following command:    
+`sudo enclaver run --publish 80:9000 resnet-enclave:latest`    
+
+When the enclave is running in this configuration, you can't handle HTTP traffic, but you can still send requests over the internet via SSH. Run the following command on your local machine:   
+`ssh -i ~/.ssh/id_rsa -N -f -L 8888:localhost:80  ec2-user@<EC2 public IP>`    
+
+This command connects port 80 of the enclave to port 8888 on your local machine. You can now interact with the enclave via calls to `http://localhost:8888`. 
+
+### Running the enclave with Nginx ### 
+
+To handle HTTP traffic, you can use Nginx as a reverse proxy on your parent EC2 instance. Nginx listens on port 80 and forwards traffic to your enclave's exposed port. In this repo, I provide a [custom Nginx conf file](https://github.com/hpiercehoffman/secure-serving/blob/main/nginx/nginx-basic.conf) which sets up forwarding to a container (regular Docker or enclave) running on port 9000. Place this file in `/etc/nginx/nginx.conf` and run `sudo systemctl start nginx`. You should now be able to send HTTP requests to the extneral IP address of the parent EC2 instance, and Nginx will pass them along to the enclave.
+
+This is the configuration I use for [internet load testing](https://github.com/hpiercehoffman/secure-serving/blob/main/load_testing/load_testing.ipynb). I run either an enclave server or a standard Docker server on port 9000 of the parent EC2 instance, then measure their ability to handle concurrent requests. For local load testing, I use the same setup, except I run a [script](https://github.com/hpiercehoffman/secure-serving/blob/main/load_testing/load_testing.py) directly on the parent instance, so it doesn't matter whether Nginx is running.
+
+### Routing a mixed stream of requests to an enclave server and a standard server ###
+
+
+
+
+
+
 
 
