@@ -81,7 +81,24 @@ If you want to run an enclave server and a standard server side-by-side to handl
 
 At this point, the Node server should be running on port 3000, with Nginx forwarding incoming requests to Node. The Node server will look at the API prefix of each request. Requests made to `/predict-secure/` will be forwarded to the secure server on port 9001, while requests made to `/predict-public/` will be forwarded to the standard server running on port 9000. It's not necessary to change the name of the prediction endpoint in the servers themselves: for both servers, we are forwarding requests to the `/predict/` endpoint that would be used when running each server individually. All you need to do is ensure that your *client* differentiates between secure and standard requests, and prefixes them with the appropriate API name.
 
+### I/O throughput testing with iperf ###
 
+What's the maximum amount of I/O bandwidth that a Nitro Enclave can handle? How does this compare to the I/O bandwidth for a standard server running in a Docker container? We can answer these questions with the [iperf-vsock](https://github.com/stefano-garzarella/iperf-vsock) utility. Setting this up is somewhat complicated, so we will walk through the steps below:
+- First, clone `iperf-vsock` onto your parent EC2 instance using the link above. There is a bug in the latest commit, so you need to checkout commit `9245f9a`.
+- Install `iperf-vsock` following the repo instructions. You may need to install libtool first: `sudo apt-get install libtool` 
+- Make a Dockerfile which builds and runs `iperf-vsock` inside a Docker container. Use my templates to ensure you have included all necessary libraries:
+    - [Standard server](https://github.com/hpiercehoffman/secure-serving/blob/main/perf_tests/iperf/public/Dockerfile)
+    - [Enclave server](https://github.com/hpiercehoffman/secure-serving/blob/main/perf_tests/iperf/secure/Dockerfile)
+- For a standard server, the `CMD` the Docker runs should be `iperf3 -s`. This is because our standard server is running in a regular Docker container, which communicates with the host VM using a TCP/IP socket. No VSOCK is present.
+- For an enclave server, the `CMD` entrypoint should be `iperf3 --vsock -s`. This tells `iperf-vsock` that we're sending bytes through the VSOCK, which is a specialized socket originally intended for a hypervisor to communicate with a VM.
+- Now you can build the standard and enclave containers following the instructions above. I provide an [Enclaver config file](https://github.com/hpiercehoffman/secure-serving/blob/main/perf_tests/iperf/secure/iperf.yaml) for building the enclave.
+- Run the standard server: 
+- Start one of the servers (either run the Docker container for the standard server, or run the enclave using Enclaver). Make sure the server is connected to port 9000. 
+- If running the standard server, run the following on the parent EC2 host:
+    - `cd iperf-vsock/src`
+    - `./iperf3 -c localhost:9000`
+- The `iperf` client will send bytes to the standard server for 10 seconds, recording the maximum I/O throughput every second.
+- If running the enclave server, you need to determine the **channel ID** of the VSOCK. As far as I can tell, this is a random number and it's not visible anywhere. It seems to start at 4 and increments every time you run a new enclave. Luckily, you can get around this issue with a simple [script](https://github.com/hpiercehoffman/secure-serving/blob/main/perf_tests/iperf/secure/iperf-find-channel-id.sh) which iterates through every possible channel ID from 0-100, calling iperf each time. For me, the magic number was 37.
 
 
 
