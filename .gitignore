@@ -7,3 +7,5 @@ slim.report.json
 image_classification/secure/iperf-vsock/
 image_classification/public/iperf-vsock/
 
+.DS_Store
+
